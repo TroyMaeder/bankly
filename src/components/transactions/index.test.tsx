@@ -1,17 +1,19 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import { TransactionHistory } from ".";
 
 describe("transaction history", () => {
-  test("the expenses tab should be shown by default", () => {
+  test("the expenses tab should be shown by default", async () => {
     render(<TransactionHistory />);
 
-    expect(screen.getByText("Transaction History")).toBeInTheDocument();
+    await expect(screen.getByText("Transaction History")).toBeInTheDocument();
 
-    const expensesTabTrigger = screen.getByRole("tab", {
-      name: "Expenses",
-    });
+    const expensesTabTrigger = await waitFor(() =>
+      screen.getByRole("tab", {
+        name: "Expenses",
+      })
+    );
 
-    expect(expensesTabTrigger).toHaveAttribute("data-state", "active");
+    await expect(expensesTabTrigger).toHaveAttribute("data-state", "active");
 
     const expensesTable = screen.getByRole("table", {
       name: "Expenses",
