@@ -1,6 +1,6 @@
 import * as Tabs from "@radix-ui/react-tabs";
 import { Transaction as TransactionType } from "../../../types";
-import { transactions } from "../../api/data/transactions";
+import useFetch from "../../hooks/useFetch";
 import "./index.css";
 import { Transaction } from "./item";
 
@@ -8,7 +8,9 @@ const isExpense = (transaction: TransactionType) =>
   transaction.amount.value < 0;
 const isIncome = (transaction: TransactionType) => transaction.amount.value > 0;
 
-const Expenses = () => {
+const Expenses: React.FC<{ transactions: TransactionType[] }> = ({
+  transactions,
+}) => {
   return (
     <table aria-label="Expenses">
       <thead>
@@ -27,7 +29,9 @@ const Expenses = () => {
   );
 };
 
-const Income = () => {
+const Income: React.FC<{ transactions: TransactionType[] }> = ({
+  transactions,
+}) => {
   return (
     <table aria-label="Income">
       <thead>
@@ -47,22 +51,31 @@ const Income = () => {
 };
 
 export const TransactionHistory = () => {
+  const { data } = useFetch<TransactionType[]>("/api/transactions");
+
   return (
     <>
-      <h1 className="align-left">Transaction History</h1>
-      <Tabs.Root defaultValue="expenses" className="flow">
-        <Tabs.List className="tabs__list" aria-label="Filter your transactions">
-          <Tabs.Trigger value="expenses">Expenses</Tabs.Trigger>
-          <Tabs.Trigger value="income">Income</Tabs.Trigger>
-        </Tabs.List>
+      {data && (
+        <>
+          <h1 className="align-left">Transaction History</h1>
+          <Tabs.Root defaultValue="expenses" className="flow">
+            <Tabs.List
+              className="tabs__list"
+              aria-label="Filter your transactions"
+            >
+              <Tabs.Trigger value="expenses">Expenses</Tabs.Trigger>
+              <Tabs.Trigger value="income">Income</Tabs.Trigger>
+            </Tabs.List>
 
-        <Tabs.Content className="TabsContent" value="expenses">
-          <Expenses />
-        </Tabs.Content>
-        <Tabs.Content className="TabsContent" value="income">
-          <Income />
-        </Tabs.Content>
-      </Tabs.Root>
+            <Tabs.Content className="TabsContent" value="expenses">
+              <Expenses transactions={data} />
+            </Tabs.Content>
+            <Tabs.Content className="TabsContent" value="income">
+              <Income transactions={data} />
+            </Tabs.Content>
+          </Tabs.Root>
+        </>
+      )}
     </>
   );
 };
