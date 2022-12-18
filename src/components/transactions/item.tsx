@@ -1,4 +1,5 @@
 import type { Transaction as TransactionType } from "../../../types";
+import CURRENCY_SYMBOLS from "../../currency";
 import { Avatar } from "./avatar";
 
 type Props = {
@@ -20,7 +21,10 @@ export const Transaction = ({ transaction }: Props) => (
       <div>{transaction.date}</div>
     </td>
     <td className="transaction-amount">
-      <div className="amount">{transaction.amount.value}</div>
+      <div className="amount">
+        {CURRENCY_SYMBOLS[transaction.amount.currency_iso]}
+        {transaction.amount.value}
+      </div>
     </td>
   </tr>
 );

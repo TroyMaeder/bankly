@@ -13,7 +13,7 @@ export const handlers = [
     res(ctx.delay(), ctx.status(statusCode), ctx.json(accounts))
   ),
   // this api takes two seconds
-  rest.get("/api/trddansactions", (_, res, ctx) =>
+  rest.get("/api/transactions", (_, res, ctx) =>
     res(ctx.delay(duration), ctx.status(statusCode), ctx.json(transactions))
   ),
 ];
