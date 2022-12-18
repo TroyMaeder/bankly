@@ -20,6 +20,7 @@ describe("transaction history", () => {
     });
 
     expect(expensesTable).toBeInTheDocument();
+    expect(screen.getByText("24 June 2022")).toBeInTheDocument();
     expect(screen.getByText("€-20.25")).toBeInTheDocument();
     expect(screen.getByText("£-76.06")).toBeInTheDocument();
   });

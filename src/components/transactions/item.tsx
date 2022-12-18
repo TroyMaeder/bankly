@@ -1,5 +1,6 @@
 import type { Transaction as TransactionType } from "../../../types";
 import CURRENCY_SYMBOLS from "../../currency";
+import formatDate from "../../helpers/formatDate";
 import { Avatar } from "./avatar";
 
 type Props = {
@@ -18,7 +19,7 @@ export const Transaction = ({ transaction }: Props) => (
       </div>
     </td>
     <td>
-      <div>{transaction.date}</div>
+      <div>{formatDate(transaction.date)}</div>
     </td>
     <td className="transaction-amount">
       <div className="amount">
