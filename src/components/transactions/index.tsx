@@ -1,7 +1,7 @@
 import * as Tabs from "@radix-ui/react-tabs";
 import { Transaction as TransactionType } from "../../../types";
 import useFetch from "../../hooks/useFetch";
-import LoadingBoundary from "../loadingBoundary";
+import StateHandler from "../StateHandler";
 import "./index.css";
 import { Transaction } from "./item";
 
@@ -52,12 +52,13 @@ const Income: React.FC<{ transactions: TransactionType[] }> = ({
 };
 
 export const TransactionHistory = () => {
-  const { data, loading } = useFetch<TransactionType[]>("/api/transactions");
+  const { data, loading, error } =
+    useFetch<TransactionType[]>("/api/transactions");
 
   return (
     <>
       <h1 className="align-left">Transaction History</h1>
-      <LoadingBoundary loading={loading}>
+      <StateHandler error={error} loading={loading}>
         {data && (
           <Tabs.Root defaultValue="expenses" className="flow">
             <Tabs.List
@@ -76,7 +77,7 @@ export const TransactionHistory = () => {
             </Tabs.Content>
           </Tabs.Root>
         )}
-      </LoadingBoundary>
+      </StateHandler>
     </>
   );
 };

@@ -2,15 +2,15 @@ import { useEffect, useState } from "react";
 
 interface Response<T> {
     data?: T;
-    error: string;
+    error: boolean;
     loading: boolean;
 }
 
 function useFetch<T>(url: string): Response<T> {
     const [data, setdata] = useState<T>();
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState("");
-  
+    const [error, setError] = useState(false);
+    
     useEffect(() => {
       const fetchData = async () => {
         try {
@@ -18,9 +18,9 @@ function useFetch<T>(url: string): Response<T> {
           const data = await response.json();
           setdata(data);
           setLoading(false);
-        } catch (error) {
-          setError("Something went wrong");
+        } catch {
           setLoading(false);
+          setError(true);
         }
       };
   

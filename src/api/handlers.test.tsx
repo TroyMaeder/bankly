@@ -18,11 +18,6 @@ describe("/api/", () => {
 });
 
 describe("Transaction component", () => {
-  test("shows loading spinner while data is loading", async () => {
-    render(<TransactionHistory />);
-    expect(screen.getByText("Loading...")).toBeInTheDocument();
-  });
-
   test("only renders title if no transaction data exists", async () => {
     server.use(
       rest.get("/api/transactions", (_, res, ctx) => {
@@ -46,5 +41,22 @@ describe("Transaction component", () => {
 
     await waitFor(() => screen.getByText("British Gas"));
     expect(screen.getByText("British Gas")).toBeInTheDocument();
+  });
+
+  test("shows error message", async () => {
+    server.use(
+      rest.get("/api/transactions", (_, res, ctx) => {
+        return res(ctx.status(500));
+      })
+    );
+    render(<TransactionHistory />);
+
+    const error = await screen.findByText("Error...");
+    expect(error).toBeInTheDocument();
+  });
+
+  test("shows loading spinner while data is loading", async () => {
+    render(<TransactionHistory />);
+    expect(screen.getByText("Loading...")).toBeInTheDocument();
   });
 });
