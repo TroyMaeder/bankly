@@ -14,8 +14,8 @@
   height: var(--spacer-xxlarge);
   font-size: var(--font-xlarge);
   font-weight: 600;
-  border-radius: var(--spacer-smallall);
   border: 2px solid var(--primary-300);
+  border-radius: var(--border-radius-8);
   background-color: var(--background-900);
   text-transform: uppercase;
   justify-content: center;
@@ -25,20 +25,29 @@
 
 table {
   background-color: var(--background-800);
-  border-radius: var(--spacer-smallall);
+  border-radius: var(--border-radius-8);
   width: 100%;
   text-align: left;
 }
 
 td {
-  padding: var(--spacer-medium);
+  padding: var(--spacer-medium) 10px;
+}
+
+td:last-child {
+  text-align: right;
 }
 
 th {
-  color: var(--primary-900);
-  border-bottom: 1px solid var(--primary-300);
-  padding: var(--spacer-medium);
+  color: var(--primary-300);
+  border-bottom: 2px solid var(--primary-600);
+  padding: var(--spacer-medium) 10px;
   text-align: left;
+  font-weight: var(--normal-400);
+}
+
+th:last-child {
+  text-align: right;
 }
 
 .transaction-detail {

@@ -9,7 +9,7 @@ export const Accounts = () => {
 
   return (
     <>
-      <h1 className="align-left">Your accounts</h1>
+      <h1 className="title">Your accounts</h1>
       <StateHandler error={error} loading={loading}>
         <div className="accounts">
           {data?.map((account) => (

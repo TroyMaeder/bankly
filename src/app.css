@@ -1,25 +1,25 @@
-.app__row {
+.header {
+  border-bottom: 1px solid var(--background-800);
+}
+
+.container {
   display: flex;
   margin-top: var(--spacer-medium);
   gap: var(--spacer-medium);
+  width: 90vw;
+  max-width: 800px;
+  margin: auto;
+  padding: var(--spacer-medium);
+  display: flex;
+  align-items: center;
 }
 
 .logo {
-  height: var(--spacer-medium);
-  will-change: filter;
+  display: flex;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.home {
+  width: 90vw;
+  max-width: 800px;
+  margin: auto;
 }
