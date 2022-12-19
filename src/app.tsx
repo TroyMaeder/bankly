@@ -3,7 +3,6 @@ import "./app.css";
 
 const App = () => (
   <>
-    {/* TODO: move into it's own component */}
     <div className="header">
       <div className="container">
         <a
