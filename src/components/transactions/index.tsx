@@ -57,7 +57,7 @@ export const TransactionHistory = () => {
 
   return (
     <>
-      <h1 className="align-left">Transaction History</h1>
+      <h1 className="title">Transaction history</h1>
       <StateHandler error={error} loading={loading}>
         {data && (
           <Tabs.Root defaultValue="expenses" className="flow">

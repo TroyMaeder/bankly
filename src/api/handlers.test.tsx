@@ -25,7 +25,7 @@ describe("Transaction component", () => {
       })
     );
     render(<TransactionHistory />);
-    expect(screen.getByText("Transaction History")).toBeInTheDocument();
+    expect(screen.getByText("Transaction history")).toBeInTheDocument();
 
     const text = screen.queryByText("British Gas");
     expect(text).not.toBeInTheDocument();
