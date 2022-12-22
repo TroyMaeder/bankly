@@ -3,7 +3,7 @@ import "./app.css";
 
 const App = () => (
   <>
-    <div className="header">
+    <header className="header">
       <div className="container">
         <a
           className="logo"
@@ -14,7 +14,7 @@ const App = () => (
           <img src="/bankly.svg" alt="Bankly logo" />
         </a>
       </div>
-    </div>
+    </header>
     <Home />
   </>
 );
